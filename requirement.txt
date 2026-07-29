@@ -1,0 +1,7 @@
+python-dotenv
+selenium
+pytest
+allure-pytest
+pytest-order
+webdriver-manager
+faker
