@@ -2,7 +2,7 @@ from Pages.signin import SignIn
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-import os
+# import os
 from faker import Faker
 
 class campaign_email:
@@ -29,7 +29,7 @@ class campaign_email:
         # Campaign Name
         campaign_name_input = self.wait.until(
             EC.visibility_of_element_located((By.XPATH, '//*[@id="root"]/div/div/main/div/div[3]/div/input')))
-        campaign_name_input.send_keys(Faker().text(118))
+        campaign_name_input.send_keys(Faker().text())
 
         # EMAIL Campaign Type
         email_camp_button = self.wait.until(
@@ -37,17 +37,19 @@ class campaign_email:
         self._safe_click(email_camp_button)
 
         next_button = self.wait.until(
-            EC.presence_of_element_located((By.XPATH, '//*[@id="root"]/div/div/main/div/div[4]/button[2]')))
+            EC.element_to_be_clickable((By.XPATH, '//*[@id="root"]/div/div/main/div/div[4]/button[2]')))
         self._safe_click(next_button)
 
         # select all
         select_button = self.wait.until(
-            EC.presence_of_element_located((By.XPATH, '//*[@id="root"]/div/div/main/div/div[3]/div/div[1]/button')))
+            EC.element_to_be_clickable((By.XPATH,
+                "//*[self::button or self::label or self::a]"
+                "[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'select all')]")))
         self._safe_click(select_button)
 
         # click on next
         next_button = self.wait.until(
-            EC.presence_of_element_located((By.XPATH, '//*[@id="root"]/div/div/main/div/div[4]/button[2]')))
+            EC.element_to_be_clickable((By.XPATH, '//*[@id="root"]/div/div/main/div/div[4]/button[2]')))
         self._safe_click(next_button)
 
         campaign_subject_input = self.wait.until(
@@ -57,14 +59,14 @@ class campaign_email:
         campaign_message_input = self.wait.until(
              EC.visibility_of_element_located((By.XPATH, '//*[@id="root"]/div/div/main/div/div[3]/div/div[1]/textarea'))
          )
-        campaign_message_input.send_keys(Faker().text())
+        campaign_message_input.send_keys(Faker().text(100))
 
         next_button = self.wait.until(
-            EC.presence_of_element_located((By.XPATH, '//*[@id="root"]/div/div/main/div/div[4]/button[2]')))
+            EC.element_to_be_clickable((By.XPATH, '//*[@id="root"]/div/div/main/div/div[4]/button[2]')))
         self._safe_click(next_button)
 
         send_button = self.wait.until(
-            EC.presence_of_element_located((By.XPATH, '//*[@id="root"]/div/div/main/div/div[3]/div/div[2]/button[1]'))
+            EC.element_to_be_clickable((By.XPATH, '//*[@id="root"]/div/div/main/div/div[3]/div/div[2]/button[1]'))
         )
         self._safe_click(send_button)
 

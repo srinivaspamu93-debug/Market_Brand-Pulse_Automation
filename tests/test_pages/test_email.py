@@ -27,7 +27,6 @@ class TestCampaignEmailCreation:
 
         with allure.step("Verify email campaign creation completion and redirection to dashboard"):
             # The campaign method ends by clicking the dashboard button
-            time.sleep(2)
             allure.attach(driver.get_screenshot_as_png(), name="campaign_creation_result",
                           attachment_type=allure.attachment_type.PNG)
 
